@@ -3,13 +3,18 @@ import propTypes from 'prop-types';
 import Context from '../Context';
 
 function SearchElements() {
-  const dataBase = useContext(Context);
-  const data = dataBase.useSearchValue;
-  const handler = dataBase.handleSearchChanger;
+  const { useSearchFilter, searchByName } = useContext(Context);
+  // const { name } = useSearchFilter.filterByName;
 
   return (
     <div>
-      <input placeholder="Search..." type="text" value={ data } onChange={ handler } />
+      <input
+        data-testid="name-filter"
+        placeholder="Search..."
+        type="text"
+        value={ useSearchFilter }
+        onChange={ searchByName }
+      />
     </div>
   );
 }
