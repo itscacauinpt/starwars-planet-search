@@ -4,17 +4,17 @@ import Context from '../Context';
 
 function Table() {
   const { usePlanets, useSearchFilter } = useContext(Context);
-  // const { original } = useSearchFilter;
+  const { filterByName: { name } } = useSearchFilter;
+
   const collums = usePlanets[0] && (
     Object.keys(usePlanets[0]).filter((key) => key !== 'residents')
   );
-  // console.log(usePlanets.map((row) => (collums.map((collum) => row[collum]))));
 
   const usePlanetsFiltered = usePlanets.filter((val) => {
-    if (useSearchFilter === '') {
+    if (name === '') {
       return val;
     }
-    if (val.name.toLowerCase().includes(useSearchFilter.toLowerCase())) {
+    if (val.name.toLowerCase().includes(name.toLowerCase())) {
       return val;
     }
     return '';

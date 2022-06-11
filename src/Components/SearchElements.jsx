@@ -4,7 +4,7 @@ import Context from '../Context';
 
 function SearchElements() {
   const { useSearchFilter, searchByName } = useContext(Context);
-  // const { name } = useSearchFilter.filterByName;
+  const { filterByName } = useSearchFilter;
 
   return (
     <div>
@@ -12,7 +12,7 @@ function SearchElements() {
         data-testid="name-filter"
         placeholder="Search..."
         type="text"
-        value={ useSearchFilter }
+        value={ filterByName.name }
         onChange={ searchByName }
       />
     </div>
