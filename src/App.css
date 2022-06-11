@@ -1,3 +1,24 @@
+.thead, tr {
+  background-color: rgb(175, 175, 175);
+}
+
+.tr, th {
+  background-color: rgb(175, 175, 175);
+  padding: 1rem;
+  white-space: nowrap;
+}
+
+.tbody, tr, td {
+  overflow-wrap: break-word;
+  padding: 0.5rem;
+  white-space: nowrap;
+  width: 20%;
+}
+
+tbody, tr:nth-child( odd ) {
+  background-color: white;
+}
+
 .App {
   text-align: center;
 }
