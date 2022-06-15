@@ -5,28 +5,22 @@ import PlanetsAPI from '../Services/PlanetsAPI';
 
 const INITIAL_FITERS_STATE = {
   filterByName: { name: '' },
+  filterByNumericValues: [],
 };
 
 function TableProvider({ children }) {
   const planetsAPI = PlanetsAPI();
   const [usePlanets, setPlanets] = useState([]);
-  const [useSearchFilter, setSearchFilter] = useState(INITIAL_FITERS_STATE);
+  const [useSelectedFilter, setSelectedFilter] = useState(INITIAL_FITERS_STATE);
 
   useEffect(() => {
     setPlanets(planetsAPI);
   }, [planetsAPI]);
 
-  function searchByName({ target }) {
-    setSearchFilter({
-      ...useSearchFilter,
-      filterByName: { name: target.value },
-    });
-  }
-
   const contextState = {
     usePlanets,
-    useSearchFilter,
-    searchByName,
+    useSelectedFilter,
+    setSelectedFilter,
   };
 
   return (

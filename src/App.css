@@ -20,6 +20,7 @@ tbody, tr:nth-child( odd ) {
 }
 
 .App {
+  margin: 10vh;
   text-align: center;
 }
 

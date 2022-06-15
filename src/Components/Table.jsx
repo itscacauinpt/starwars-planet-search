@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
 import Context from '../Context';
 
 function Table() {
-  const { usePlanets, useSearchFilter } = useContext(Context);
-  const { filterByName: { name } } = useSearchFilter;
+  const { usePlanets, useSelectedFilter } = useContext(Context);
+  const { filterByName: { name } } = useSelectedFilter;
 
-  const collums = usePlanets[0] && (
+  const colums = usePlanets[0] && (
     Object.keys(usePlanets[0]).filter((key) => key !== 'residents')
   );
 
@@ -21,12 +21,12 @@ function Table() {
   });
 
   return (
-    <div>
+    <div className="table-style">
       <table cellPadding={ 0 } cellSpacing={ 0 }>
         <thead>
           <tr>
             {
-              usePlanets[0] && collums.map((heading, i) => <th key={ i }>{ heading }</th>)
+              usePlanets[0] && colums.map((heading, i) => <th key={ i }>{ heading }</th>)
             }
           </tr>
         </thead>
@@ -35,7 +35,7 @@ function Table() {
             usePlanetsFiltered.map((row, i) => (
               <tr key={ i }>
                 {
-                  collums.map((collumn, index) => <td key={ index }>{row[collumn]}</td>)
+                  colums.map((column, index) => <td key={ index }>{row[column]}</td>)
                 }
               </tr>
             ))
@@ -46,8 +46,8 @@ function Table() {
   );
 }
 
-Table.propTypes = {
-  usePlanetsBase: propTypes.arrayOf,
-}.isRequired;
+// Table.propTypes = {
+//   usePlanetsBase: propTypes.arrayOf,
+// }.isRequired;
 
 export default Table;
