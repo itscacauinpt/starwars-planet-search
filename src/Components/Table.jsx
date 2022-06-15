@@ -3,22 +3,11 @@ import React, { useContext } from 'react';
 import Context from '../Context';
 
 function Table() {
-  const { usePlanets, useSelectedFilter } = useContext(Context);
-  const { filterByName: { name } } = useSelectedFilter;
+  const { usePlanets } = useContext(Context);
 
   const colums = usePlanets[0] && (
     Object.keys(usePlanets[0]).filter((key) => key !== 'residents')
   );
-
-  const usePlanetsFiltered = usePlanets.filter((val) => {
-    if (name === '') {
-      return val;
-    }
-    if (val.name.toLowerCase().includes(name.toLowerCase())) {
-      return val;
-    }
-    return '';
-  });
 
   return (
     <div className="table-style">
@@ -32,7 +21,7 @@ function Table() {
         </thead>
         <tbody>
           {
-            usePlanetsFiltered.map((row, i) => (
+            usePlanets.map((row, i) => (
               <tr key={ i }>
                 {
                   colums.map((column, index) => <td key={ index }>{row[column]}</td>)

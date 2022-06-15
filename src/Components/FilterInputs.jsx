@@ -34,6 +34,9 @@ function FilterInputs() {
       ...useSelectedFilter,
       filterByNumericValues: [...useSelectedFilter.filterByNumericValues, useSelected],
     });
+    setSelected({
+      column: 'population', comparison: 'maior que', value: '0',
+    });
   }
 
   return (
