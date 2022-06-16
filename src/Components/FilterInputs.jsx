@@ -71,12 +71,13 @@ function FilterInputs() {
           onChange={ getSelected }
           data-testid="value-filter"
         />
-        <input
+        <button
           type="submit"
-          value="FILTRAR"
           onClick={ setFilters }
           data-testid="button-filter"
-        />
+        >
+          FILTRAR
+        </button>
       </form>
     </div>
   );
