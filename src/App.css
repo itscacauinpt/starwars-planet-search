@@ -1,3 +1,7 @@
+.filter-list {
+  color: white;
+}
+
 .thead, tr {
   background-color: rgb(175, 175, 175);
 }

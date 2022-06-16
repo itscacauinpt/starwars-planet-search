@@ -8,9 +8,16 @@ const INITIAL_FITERS_STATE = {
   filterByNumericValues: [],
 };
 
+const INPUT_STATE = {
+  column: 'population',
+  comparison: 'maior que',
+  value: '0',
+};
+
 function TableProvider({ children }) {
   const [data, setData] = useState({});
   const [usePlanets, setPlanets] = useState([]);
+  const [useSelectedInput, setSelectedInput] = useState(INPUT_STATE);
   const [useSelectedFilter, setSelectedFilter] = useState(INITIAL_FITERS_STATE);
 
   async function GetPlanetsAPI() {
@@ -18,31 +25,34 @@ function TableProvider({ children }) {
     setData(resp);
   }
 
-  // const { filterByName: { name } } = useSelectedFilter;
-
-  // const usePlanetsFiltered = usePlanets.filter((val) => {
-  //   if (name === '') {
-  //     return val;
-  //   }
-  //   if (val.name.toLowerCase().includes(name.toLowerCase())) {
-  //     return val;
-  //   }
-  //   return '';
-  // });
-
-  function NameFilter(results, name) {
-    return results.filter(({ name: nameSearched }) => (
-      nameSearched.toLowerCase().includes(name.toLowerCase())
+  function NameFilter(results, nameSearched) {
+    return results.filter(({ name: planetName }) => (
+      planetName.toLowerCase().includes(nameSearched.toLowerCase())
     ));
-    // return arrayResults.filter((val) => {
-    //   if (name === '') {
-    //     return val;
-    //   }
-    //   if (val.name.toLowerCase().includes(name.toLowerCase())) {
-    //     return val;
-    //   }
-    //   return '';
-    // });
+  }
+
+  // https://www.youtube.com/watch?v=nyg5Lpl6AiM&ab_channel=DevEd
+  // https://www.youtube.com/watch?v=xRBE4iKX0yw&ab_channel=CodeWithVishal *** sort and comparing with a comparison table
+  // https://www.youtube.com/watch?v=d1r0aK5awWk&t=668s&ab_channel=DevmentorLive
+
+  function NumericFilter(results, inputSelected) {
+    let appliedFilters = [...results];
+
+    const comparing = {
+      'maior que': (columnInput, comparisonInput) => columnInput > comparisonInput,
+      'menor que': (columnInput, comparisonInput) => columnInput < comparisonInput,
+      'igual a': (columnInput, comparisonInput) => columnInput === comparisonInput,
+    };
+
+    inputSelected.forEach(({ column, comparison, value }) => {
+      appliedFilters = appliedFilters.filter((eachPlanet) => {
+        const columnInput = Number(eachPlanet[column]);
+        const comparisonInput = Number(value);
+        return comparing[comparison](columnInput, comparisonInput);
+      });
+    });
+
+    return appliedFilters;
   }
 
   useEffect(() => {
@@ -50,18 +60,20 @@ function TableProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    // console.log(data);
     if (data.results) {
       const { results } = data;
       let appliedFilters = [...results];
-      const { filterByName } = useSelectedFilter;
+      const { filterByName, filterByNumericValues } = useSelectedFilter;
       appliedFilters = NameFilter(appliedFilters, filterByName.name);
+      appliedFilters = NumericFilter(appliedFilters, filterByNumericValues);
       setPlanets(appliedFilters);
     }
   }, [data, useSelectedFilter]);
 
   const contextState = {
     usePlanets,
+    useSelectedInput,
+    setSelectedInput,
     useSelectedFilter,
     setSelectedFilter,
   };

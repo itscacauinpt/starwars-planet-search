@@ -4,6 +4,7 @@ import './App.css';
 import Table from './Components/Table';
 import FilterSearch from './Components/FilterSearch';
 import FilterInputs from './Components/FilterInputs';
+import FiltersList from './Components/FiltersList';
 // import StarWars from '../projectIntro.gif';
 // TODO: gif dentro de src/
 
@@ -14,6 +15,7 @@ function App() {
       <Provider>
         <FilterSearch />
         <FilterInputs />
+        <FiltersList />
         <Table />
       </Provider>
     </section>

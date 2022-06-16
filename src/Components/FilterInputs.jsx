@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Context from '../Context';
 
 function FilterInputs() {
-  const [useSelected, setSelected] = useState({
-    column: 'population', comparison: 'maior que', value: '0',
-  });
-  const { column, comparison, value } = useSelected;
-  const { useSelectedFilter, setSelectedFilter } = useContext(Context);
+  const { useSelectedInput, setSelectedInput,
+    useSelectedFilter, setSelectedFilter } = useContext(Context);
+  const { column, comparison, value } = useSelectedInput;
 
   const columnOptions = [
     'population',
@@ -19,9 +17,8 @@ function FilterInputs() {
   const operatorOptions = ['maior que', 'menor que', 'igual a'];
 
   function getSelected({ target }) {
-    console.log(target);
-    setSelected({
-      ...useSelected,
+    setSelectedInput({
+      ...useSelectedInput,
       [target.name]: target.value,
     });
   }
@@ -32,9 +29,10 @@ function FilterInputs() {
 
     setSelectedFilter({
       ...useSelectedFilter,
-      filterByNumericValues: [...useSelectedFilter.filterByNumericValues, useSelected],
+      filterByNumericValues:
+      [...useSelectedFilter.filterByNumericValues, useSelectedInput],
     });
-    setSelected({
+    setSelectedInput({
       column: 'population', comparison: 'maior que', value: '0',
     });
   }
