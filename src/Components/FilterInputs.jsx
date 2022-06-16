@@ -3,16 +3,16 @@ import Context from '../Context';
 
 function FilterInputs() {
   const { useSelectedInput, setSelectedInput,
-    useSelectedFilter, setSelectedFilter } = useContext(Context);
+    useSelectedFilter, setSelectedFilter, useColumnOptions } = useContext(Context);
   const { column, comparison, value } = useSelectedInput;
 
-  const columnOptions = [
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ];
+  // const columnOptions = [
+  //   'population',
+  //   'orbital_period',
+  //   'diameter',
+  //   'rotation_period',
+  //   'surface_water',
+  // ];
 
   const operatorOptions = ['maior que', 'menor que', 'igual a'];
 
@@ -47,8 +47,8 @@ function FilterInputs() {
           data-testid="column-filter"
         >
           {
-            columnOptions.map((columsOp, index) => (
-              <option key={ index } value={ columsOp }>{ columsOp }</option>
+            useColumnOptions.map((columsOp) => (
+              <option key={ columsOp } value={ columsOp }>{ columsOp }</option>
             ))
           }
         </select>

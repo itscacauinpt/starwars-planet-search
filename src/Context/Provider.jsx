@@ -14,10 +14,20 @@ const INPUT_STATE = {
   value: '0',
 };
 
+const COLUMN_OPTIONS = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 function TableProvider({ children }) {
   const [data, setData] = useState({});
   const [usePlanets, setPlanets] = useState([]);
   const [useSelectedInput, setSelectedInput] = useState(INPUT_STATE);
+  const [useColumnOptions] = useState(COLUMN_OPTIONS);
+  // setColumnOptions
   const [useSelectedFilter, setSelectedFilter] = useState(INITIAL_FITERS_STATE);
 
   async function GetPlanetsAPI() {
@@ -55,6 +65,21 @@ function TableProvider({ children }) {
     return appliedFilters;
   }
 
+  // function columnOptions() {
+  //   let theColumn = [...COLUMN_OPTIONS];
+
+  // }
+
+  function deleteFilters(index) {
+    console.log('clica e deletela');
+    const { filterByNumericValues } = useSelectedFilter;
+
+    setSelectedFilter({
+      ...useSelectedFilter,
+      filterByNumericValues: filterByNumericValues
+        .filter((_ele, eleIndex) => eleIndex !== index) });
+  }
+
   useEffect(() => {
     GetPlanetsAPI();
   }, []);
@@ -72,6 +97,8 @@ function TableProvider({ children }) {
 
   const contextState = {
     usePlanets,
+    deleteFilters,
+    useColumnOptions,
     useSelectedInput,
     setSelectedInput,
     useSelectedFilter,

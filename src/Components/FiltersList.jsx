@@ -2,20 +2,19 @@ import React, { useContext } from 'react';
 import Context from '../Context';
 
 function Filters() {
-  const { useSelectedFilter: { filterByNumericValues } } = useContext(Context);
-
-  function handleFilters() {
-    console.log('clica e deletela');
-  }
+  const { useSelectedFilter: { filterByNumericValues },
+    deleteFilters } = useContext(Context);
 
   return (
     <div className="filter-list">
       {
-        filterByNumericValues.map(({ column }) => (
+        filterByNumericValues.map(({ column, comparison, value }, index) => (
           <div key={ column } data-testid="filter">
             <p>{column}</p>
-            <button type="button" onClick={ handleFilters }>
-              delete
+            <p>{comparison}</p>
+            <p>{value}</p>
+            <button type="button" onClick={ () => { deleteFilters(index); } }>
+              lixeirazinha
             </button>
           </div>
         ))
