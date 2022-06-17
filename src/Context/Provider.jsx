@@ -47,7 +47,6 @@ function TableProvider({ children }) {
 
   function setFilters(numericFilter) {
     console.log('clica e salva');
-    // event.preventDefault();
 
     setSelectedFilter({
       ...useSelectedFilter,
@@ -58,20 +57,12 @@ function TableProvider({ children }) {
     setColumnOptions(useColumnOptions
       .filter((selectedColumn) => selectedColumn !== numericFilter.column));
 
-    setSelectedInput(INPUT_STATE);
+    setSelectedInput(useSelectedInput);
   }
 
   function deleteFilters(numericFilterColumn) {
     console.log('clica e deletela');
     const { filterByNumericValues } = useSelectedFilter;
-
-    // const numericValuesFiltered = filterByNumericValues
-    //   .filter((_ele, eleIndex) => eleIndex !== index);
-
-    // setSelectedFilter({
-    //   ...useSelectedFilter,
-    //   filterByNumericValues: numericValuesFiltered,
-    // });
 
     const numericValuesFiltered = filterByNumericValues
       .filter(({ column }) => column !== numericFilterColumn);
@@ -85,9 +76,12 @@ function TableProvider({ children }) {
   }
 
   function deleteAllFilters() {
-    setSelectedFilter(INITIAL_FITERS_STATE);
+    setSelectedFilter({
+      ...useSelectedFilter,
+      filterByNumericValues: [],
+    });
 
-    // setColumnOptions([...useColumnOptions, numericFilterColumn.column]);
+    setColumnOptions(COLUMN_OPTIONS);
   }
 
   function NameFilter(results, nameSearched) {

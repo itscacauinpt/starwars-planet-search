@@ -18,8 +18,8 @@ function FilterInputs() {
           data-testid="column-filter"
         >
           {
-            useColumnOptions.map((columsOp) => (
-              <option key={ columsOp } value={ columsOp }>{ columsOp }</option>
+            useColumnOptions.map((columsOp, index) => (
+              <option key={ index } value={ columsOp }>{ columsOp }</option>
             ))
           }
         </select>
@@ -30,8 +30,8 @@ function FilterInputs() {
           data-testid="comparison-filter"
         >
           {
-            operatorOptions.map((operatorOp) => (
-              <option key={ operatorOp } value={ operatorOp }>{ operatorOp }</option>
+            operatorOptions.map((operatorOp, index) => (
+              <option key={ index } value={ operatorOp }>{ operatorOp }</option>
             ))
           }
         </select>

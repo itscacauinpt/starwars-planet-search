@@ -8,8 +8,8 @@ function Filters() {
   return (
     <div className="filter-list">
       {
-        filterByNumericValues.map(({ column, comparison, value }) => (
-          <div key={ column } data-testid="filter">
+        filterByNumericValues.map(({ column, comparison, value }, index) => (
+          <div key={ index } data-testid="filter">
             <p>{column}</p>
             <p>{comparison}</p>
             <p>{value}</p>
