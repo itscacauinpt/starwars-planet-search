@@ -2,40 +2,11 @@ import React, { useContext } from 'react';
 import Context from '../Context';
 
 function FilterInputs() {
-  const { useSelectedInput, setSelectedInput,
-    useSelectedFilter, setSelectedFilter, useColumnOptions } = useContext(Context);
+  const { useSelectedInput, getSelected,
+    setFilters, deleteAllFilters, useColumnOptions } = useContext(Context);
   const { column, comparison, value } = useSelectedInput;
 
-  // const columnOptions = [
-  //   'population',
-  //   'orbital_period',
-  //   'diameter',
-  //   'rotation_period',
-  //   'surface_water',
-  // ];
-
   const operatorOptions = ['maior que', 'menor que', 'igual a'];
-
-  function getSelected({ target }) {
-    setSelectedInput({
-      ...useSelectedInput,
-      [target.name]: target.value,
-    });
-  }
-
-  function setFilters(event) {
-    console.log('clica e salva');
-    event.preventDefault();
-
-    setSelectedFilter({
-      ...useSelectedFilter,
-      filterByNumericValues:
-      [...useSelectedFilter.filterByNumericValues, useSelectedInput],
-    });
-    setSelectedInput({
-      column: 'population', comparison: 'maior que', value: '0',
-    });
-  }
 
   return (
     <div>
@@ -73,10 +44,17 @@ function FilterInputs() {
         />
         <button
           type="submit"
-          onClick={ setFilters }
+          onClick={ (event) => { setFilters(event); } }
           data-testid="button-filter"
         >
           FILTRAR
+        </button>
+        <button
+          type="button"
+          onClick={ () => { deleteAllFilters(); } }
+          data-testid="button-remove-filters"
+        >
+          lixeirazinhaTudo
         </button>
       </form>
     </div>

@@ -35,15 +35,55 @@ function TableProvider({ children }) {
     setData(resp);
   }
 
+  useEffect(() => {
+    GetPlanetsAPI();
+  }, []);
+
+  function getSelected({ target }) {
+    setSelectedInput({
+      ...useSelectedInput,
+      [target.name]: target.value,
+    });
+  }
+
+  // setColumnOptions(useColumnOptions
+  //   .filter((selectedColumn) => selectedColumn !== ahhhhcolumn));
+
+  function setFilters(event) {
+    console.log('clica e salva');
+    event.preventDefault();
+
+    setSelectedFilter({
+      ...useSelectedFilter,
+      filterByNumericValues:
+      [...useSelectedFilter.filterByNumericValues, useSelectedInput],
+    });
+
+    setSelectedInput(INPUT_STATE);
+  }
+
+  function deleteFilters(index) {
+    console.log('clica e deletela');
+    const { filterByNumericValues } = useSelectedFilter;
+
+    const numericValuesFiltered = filterByNumericValues
+      .filter((_ele, eleIndex) => eleIndex !== index);
+
+    setSelectedFilter({
+      ...useSelectedFilter,
+      filterByNumericValues: numericValuesFiltered,
+    });
+  }
+
+  function deleteAllFilters() {
+    setSelectedFilter(INITIAL_FITERS_STATE);
+  }
+
   function NameFilter(results, nameSearched) {
     return results.filter(({ name: planetName }) => (
       planetName.toLowerCase().includes(nameSearched.toLowerCase())
     ));
   }
-
-  // https://www.youtube.com/watch?v=nyg5Lpl6AiM&ab_channel=DevEd
-  // https://www.youtube.com/watch?v=xRBE4iKX0yw&ab_channel=CodeWithVishal *** sort and comparing with a comparison table
-  // https://www.youtube.com/watch?v=d1r0aK5awWk&t=668s&ab_channel=DevmentorLive
 
   function NumericFilter(results, inputSelected) {
     let appliedFilters = [...results];
@@ -65,25 +105,6 @@ function TableProvider({ children }) {
     return appliedFilters;
   }
 
-  // function columnOptions() {
-  //   let theColumn = [...COLUMN_OPTIONS];
-
-  // }
-
-  function deleteFilters(index) {
-    console.log('clica e deletela');
-    const { filterByNumericValues } = useSelectedFilter;
-
-    setSelectedFilter({
-      ...useSelectedFilter,
-      filterByNumericValues: filterByNumericValues
-        .filter((_ele, eleIndex) => eleIndex !== index) });
-  }
-
-  useEffect(() => {
-    GetPlanetsAPI();
-  }, []);
-
   useEffect(() => {
     if (data.results) {
       const { results } = data;
@@ -97,7 +118,10 @@ function TableProvider({ children }) {
 
   const contextState = {
     usePlanets,
+    setFilters,
+    getSelected,
     deleteFilters,
+    deleteAllFilters,
     useColumnOptions,
     useSelectedInput,
     setSelectedInput,
@@ -117,3 +141,7 @@ TableProvider.propTypes = {
 }.isRequired;
 
 export default TableProvider;
+
+// https://www.youtube.com/watch?v=nyg5Lpl6AiM&ab_channel=DevEd
+// https://www.youtube.com/watch?v=xRBE4iKX0yw&ab_channel=CodeWithVishal *** sort and comparing with a comparison table
+// https://www.youtube.com/watch?v=d1r0aK5awWk&t=668s&ab_channel=DevmentorLive
