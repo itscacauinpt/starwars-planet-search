@@ -8,12 +8,15 @@ function Filters() {
   return (
     <div className="filter-list">
       {
-        filterByNumericValues.map(({ column, comparison, value }, index) => (
-          <div key={ column } name={ index } data-testid="filter">
+        filterByNumericValues.map(({ column, comparison, value }) => (
+          <div key={ column } data-testid="filter">
             <p>{column}</p>
             <p>{comparison}</p>
             <p>{value}</p>
-            <button type="button" onClick={ () => { deleteFilters(index); } }>
+            <button
+              type="button"
+              onClick={ () => { deleteFilters(column); } }
+            >
               lixeirazinha
             </button>
           </div>

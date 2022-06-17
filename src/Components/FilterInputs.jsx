@@ -30,8 +30,8 @@ function FilterInputs() {
           data-testid="comparison-filter"
         >
           {
-            operatorOptions.map((operatorOp, index) => (
-              <option key={ index } value={ operatorOp }>{ operatorOp }</option>
+            operatorOptions.map((operatorOp) => (
+              <option key={ operatorOp } value={ operatorOp }>{ operatorOp }</option>
             ))
           }
         </select>
@@ -43,8 +43,8 @@ function FilterInputs() {
           data-testid="value-filter"
         />
         <button
-          type="submit"
-          onClick={ (event) => { setFilters(event); } }
+          type="button"
+          onClick={ () => { setFilters({ column, comparison, value }); } }
           data-testid="button-filter"
         >
           FILTRAR

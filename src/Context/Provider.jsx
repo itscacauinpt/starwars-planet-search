@@ -26,8 +26,7 @@ function TableProvider({ children }) {
   const [data, setData] = useState({});
   const [usePlanets, setPlanets] = useState([]);
   const [useSelectedInput, setSelectedInput] = useState(INPUT_STATE);
-  const [useColumnOptions] = useState(COLUMN_OPTIONS);
-  // setColumnOptions
+  const [useColumnOptions, setColumnOptions] = useState(COLUMN_OPTIONS);
   const [useSelectedFilter, setSelectedFilter] = useState(INITIAL_FITERS_STATE);
 
   async function GetPlanetsAPI() {
@@ -46,37 +45,49 @@ function TableProvider({ children }) {
     });
   }
 
-  // setColumnOptions(useColumnOptions
-  //   .filter((selectedColumn) => selectedColumn !== ahhhhcolumn));
-
-  function setFilters(event) {
+  function setFilters(numericFilter) {
     console.log('clica e salva');
-    event.preventDefault();
+    // event.preventDefault();
 
     setSelectedFilter({
       ...useSelectedFilter,
       filterByNumericValues:
-      [...useSelectedFilter.filterByNumericValues, useSelectedInput],
+      [...useSelectedFilter.filterByNumericValues, numericFilter],
     });
+
+    setColumnOptions(useColumnOptions
+      .filter((selectedColumn) => selectedColumn !== numericFilter.column));
 
     setSelectedInput(INPUT_STATE);
   }
 
-  function deleteFilters(index) {
+  function deleteFilters(numericFilterColumn) {
     console.log('clica e deletela');
     const { filterByNumericValues } = useSelectedFilter;
 
+    // const numericValuesFiltered = filterByNumericValues
+    //   .filter((_ele, eleIndex) => eleIndex !== index);
+
+    // setSelectedFilter({
+    //   ...useSelectedFilter,
+    //   filterByNumericValues: numericValuesFiltered,
+    // });
+
     const numericValuesFiltered = filterByNumericValues
-      .filter((_ele, eleIndex) => eleIndex !== index);
+      .filter(({ column }) => column !== numericFilterColumn);
 
     setSelectedFilter({
       ...useSelectedFilter,
       filterByNumericValues: numericValuesFiltered,
     });
+
+    setColumnOptions([...useColumnOptions, numericFilterColumn]);
   }
 
   function deleteAllFilters() {
     setSelectedFilter(INITIAL_FITERS_STATE);
+
+    // setColumnOptions([...useColumnOptions, numericFilterColumn.column]);
   }
 
   function NameFilter(results, nameSearched) {
