@@ -3,18 +3,20 @@ import Provider from './Context/Provider';
 import './App.css';
 import Table from './Components/Table';
 import FilterSearch from './Components/FilterSearch';
-import FilterInputs from './Components/FilterInputs';
+import NumericFilterInputs from './Components/NumericFilterInputs';
 import FiltersList from './Components/FiltersList';
-// import StarWars from '../projectIntro.gif';
-// TODO: gif dentro de src/
+import OrderFilterInputs from './Components/OrderFilterInputs';
+import star from './projectIntro.gif';
+// gif dentro de src/
 
 function App() {
   return (
     <section className="App">
-      {/* <img src={ StarWars } alt="StarWarsIntro" /> */}
+      <img src={ star } alt="StarWarsIntro" />
       <Provider>
         <FilterSearch />
-        <FilterInputs />
+        <NumericFilterInputs />
+        <OrderFilterInputs />
         <FiltersList />
         <Table />
       </Provider>

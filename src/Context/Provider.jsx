@@ -6,6 +6,7 @@ import PlanetsAPI from '../Services/PlanetsAPI';
 const INITIAL_FITERS_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
+  order: { column: 'population', sort: 'ASC' },
 };
 
 const INPUT_STATE = {
@@ -38,16 +39,14 @@ function TableProvider({ children }) {
     GetPlanetsAPI();
   }, []);
 
-  function getSelected({ target }) {
-    setSelectedInput({
-      ...useSelectedInput,
-      [target.name]: target.value,
+  function setOrderFilters(orderFilter) {
+    setSelectedFilter({
+      ...useSelectedFilter,
+      order: { column: orderFilter.column, sort: orderFilter.sort },
     });
   }
 
   function setFilters(numericFilter) {
-    console.log('clica e salva');
-
     setSelectedFilter({
       ...useSelectedFilter,
       filterByNumericValues:
@@ -103,6 +102,7 @@ function TableProvider({ children }) {
       appliedFilters = appliedFilters.filter((eachPlanet) => {
         const columnInput = Number(eachPlanet[column]);
         const comparisonInput = Number(value);
+
         return comparing[comparison](columnInput, comparisonInput);
       });
     });
@@ -110,13 +110,25 @@ function TableProvider({ children }) {
     return appliedFilters;
   }
 
+  function OrderFilter(results, orderSelected) {
+    console.log(results.sort((a, b) => a.population - b.population));
+    console.log(orderSelected);
+    // socorro
+    return results.sort();
+  }
+
   useEffect(() => {
     if (data.results) {
       const { results } = data;
+
       let appliedFilters = [...results];
-      const { filterByName, filterByNumericValues } = useSelectedFilter;
-      appliedFilters = NameFilter(appliedFilters, filterByName.name);
+
+      const { filterByName, filterByNumericValues, order } = useSelectedFilter;
+
       appliedFilters = NumericFilter(appliedFilters, filterByNumericValues);
+      appliedFilters = NameFilter(appliedFilters, filterByName.name);
+      appliedFilters = OrderFilter(appliedFilters, order);
+
       setPlanets(appliedFilters);
     }
   }, [data, useSelectedFilter]);
@@ -124,8 +136,8 @@ function TableProvider({ children }) {
   const contextState = {
     usePlanets,
     setFilters,
-    getSelected,
     deleteFilters,
+    setOrderFilters,
     deleteAllFilters,
     useColumnOptions,
     useSelectedInput,

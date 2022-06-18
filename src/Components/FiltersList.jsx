@@ -6,7 +6,7 @@ function Filters() {
     deleteFilters } = useContext(Context);
 
   return (
-    <div className="filter-list">
+    <div className="filter-color">
       {
         filterByNumericValues.map(({ column, comparison, value }, index) => (
           <div key={ index } data-testid="filter">

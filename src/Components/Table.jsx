@@ -15,16 +15,24 @@ function Table() {
         <thead>
           <tr>
             {
-              usePlanets[0] && colums.map((heading, i) => <th key={ i }>{ heading }</th>)
+              usePlanets[0] && colums
+                .map((heading, index) => <th key={ index }>{ heading }</th>)
             }
           </tr>
         </thead>
         <tbody>
           {
-            usePlanets.map((row, i) => (
-              <tr key={ i }>
+            usePlanets.map((row, indexRow) => (
+              <tr key={ indexRow }>
                 {
-                  colums.map((column, index) => <td key={ index }>{row[column]}</td>)
+                  colums.map((column, indexColumn) => (
+                    <td
+                      data-testid={ indexColumn === 0 ? 'planet-name' : 'info' }
+                      key={ indexColumn }
+                    >
+                      {row[column]}
+                    </td>
+                  ))
                 }
               </tr>
             ))

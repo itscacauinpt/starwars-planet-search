@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
 import Context from '../Context';
 
-function FilterInputs() {
-  const { useSelectedInput, getSelected,
+function NumericFilterInputs() {
+  const { useSelectedInput, setSelectedInput,
     setFilters, deleteAllFilters, useColumnOptions } = useContext(Context);
   const { column, comparison, value } = useSelectedInput;
 
   const operatorOptions = ['maior que', 'menor que', 'igual a'];
+
+  function getSelected({ target }) {
+    setSelectedInput({ ...useSelectedInput, [target.name]: target.value });
+  }
 
   return (
     <div>
@@ -61,4 +65,4 @@ function FilterInputs() {
   );
 }
 
-export default FilterInputs;
+export default NumericFilterInputs;
