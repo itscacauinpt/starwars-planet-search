@@ -7,7 +7,6 @@ import NumericFilterInputs from './Components/NumericFilterInputs';
 import FiltersList from './Components/FiltersList';
 import OrderFilterInputs from './Components/OrderFilterInputs';
 import star from './projectIntro.gif';
-// gif dentro de src/
 
 function App() {
   return (

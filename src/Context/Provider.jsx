@@ -111,15 +111,7 @@ function TableProvider({ children }) {
   }
 
   function OrderFilter(results, orderSelected) {
-    // console.log(results.sort((a, b) => a.population - b.population));
-    // console.log(orderSelected);
-
-    // return a negative number a positive number or zero; if the first arg should appear before the second arg
-    // then we return a negative number, if the first arg should appear after we return a positive, adnd if theyre equal, we return zero.
-
     const comparing = {
-      // ASC: (a, b) => Number(a) - Number(b),
-      // DESC: (a, b) => Number(b) - Number(a),
       ASC: (a, b) => a.localeCompare(b, undefined, { numeric: true }),
       DESC: (a, b) => b.localeCompare(a, undefined, { numeric: true }),
     };
@@ -128,7 +120,6 @@ function TableProvider({ children }) {
     const allByOrder = results.sort((A, B) => comparing[sort](A[column], B[column]));
 
     if (column === 'population' && sort === 'DESC') {
-      // tenho certeza que tem umjeitomelhor de fazer isso aqui heuhe
       const unknown = allByOrder.filter((ele) => ele.population === 'unknown');
       const filtered = allByOrder.filter((ele) => ele.population !== 'unknown');
 
@@ -182,7 +173,3 @@ TableProvider.propTypes = {
 }.isRequired;
 
 export default TableProvider;
-
-// https://www.youtube.com/watch?v=nyg5Lpl6AiM&ab_channel=DevEd
-// https://www.youtube.com/watch?v=xRBE4iKX0yw&ab_channel=CodeWithVishal *** sort and comparing with a comparison table
-// https://www.youtube.com/watch?v=d1r0aK5awWk&t=668s&ab_channel=DevmentorLive

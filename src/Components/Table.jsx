@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import propTypes from 'prop-types';
 import Context from '../Context';
 
 function Table() {
@@ -42,9 +41,5 @@ function Table() {
     </div>
   );
 }
-
-// Table.propTypes = {
-//   usePlanetsBase: propTypes.arrayOf,
-// }.isRequired;
 
 export default Table;
