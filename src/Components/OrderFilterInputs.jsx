@@ -3,16 +3,8 @@ import Context from '../Context';
 
 function OrderFilterInputs() {
   const [useSortOption, setSortOption] = useState({ column: 'population', sort: 'ASC' });
-  const { setOrderFilters } = useContext(Context);
+  const { setOrderFilters, COLUMN_OPTIONS } = useContext(Context);
   const { sort } = useSortOption;
-
-  const COLUMN_OPTIONS = [
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ];
 
   function setRadioOption({ target }) {
     setSortOption({ ...useSortOption, sort: target.value });

@@ -6,7 +6,7 @@ import PlanetsAPI from '../Services/PlanetsAPI';
 const INITIAL_FITERS_STATE = {
   filterByName: { name: '' },
   filterByNumericValues: [],
-  order: { column: 'population', sort: 'ASC' },
+  order: { column: 'name', sort: 'ASC' },
 };
 
 const INPUT_STATE = {
@@ -42,7 +42,7 @@ function TableProvider({ children }) {
   function setOrderFilters(orderFilter) {
     setSelectedFilter({
       ...useSelectedFilter,
-      order: { column: orderFilter.column, sort: orderFilter.sort },
+      order: orderFilter,
     });
   }
 
@@ -111,10 +111,33 @@ function TableProvider({ children }) {
   }
 
   function OrderFilter(results, orderSelected) {
-    console.log(results.sort((a, b) => a.population - b.population));
-    console.log(orderSelected);
-    // socorro
-    return results.sort();
+    // console.log(results.sort((a, b) => a.population - b.population));
+    // console.log(orderSelected);
+
+    // return a negative number a positive number or zero; if the first arg should appear before the second arg
+    // then we return a negative number, if the first arg should appear after we return a positive, adnd if theyre equal, we return zero.
+
+    const comparing = {
+      // ASC: (a, b) => Number(a) - Number(b),
+      // DESC: (a, b) => Number(b) - Number(a),
+      ASC: (a, b) => a.localeCompare(b, undefined, { numeric: true }),
+      DESC: (a, b) => b.localeCompare(a, undefined, { numeric: true }),
+    };
+
+    const { column, sort } = orderSelected;
+    const allByOrder = results.sort((A, B) => comparing[sort](A[column], B[column]));
+
+    if (column === 'population' && sort === 'DESC') {
+      // tenho certeza que tem umjeitomelhor de fazer isso aqui heuhe
+      const unknown = allByOrder.filter((ele) => ele.population === 'unknown');
+      const filtered = allByOrder.filter((ele) => ele.population !== 'unknown');
+
+      unknown.forEach((ele) => filtered.push(ele));
+
+      return filtered;
+    }
+
+    return allByOrder;
   }
 
   useEffect(() => {
@@ -134,6 +157,7 @@ function TableProvider({ children }) {
   }, [data, useSelectedFilter]);
 
   const contextState = {
+    COLUMN_OPTIONS,
     usePlanets,
     setFilters,
     deleteFilters,
