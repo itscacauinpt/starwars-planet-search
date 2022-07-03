@@ -7,7 +7,7 @@ import '../CSS/Filters.css';
 
 export default function Filters() {
   return (
-    <div className="filter-color">
+    <div className="filters">
       <FilterSearch />
       <NumericFilterInputs />
       <OrderFilterInputs />
