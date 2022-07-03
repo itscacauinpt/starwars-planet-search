@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Provider from './Context/Provider';
-import './App.css';
+import './CSS/App.css';
 import Table from './Components/Table';
 import projectIntro from './Images/projectIntro.gif';
 import projectScroll from './Images/projectScroll.png';

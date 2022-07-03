@@ -15,7 +15,7 @@ function OrderFilterInputs() {
   }
 
   return (
-    <div className="filter-color">
+    <div>
       <form>
         <select
           name="column"

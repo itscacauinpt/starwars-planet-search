@@ -3,11 +3,11 @@ import FilterSearch from './FilterSearch';
 import NumericFilterInputs from './NumericFilterInputs';
 import FiltersList from './FiltersList';
 import OrderFilterInputs from './OrderFilterInputs';
-import './CSS/Filters.css';
+import '../CSS/Filters.css';
 
 export default function Filters() {
   return (
-    <div>
+    <div className="filter-color">
       <FilterSearch />
       <NumericFilterInputs />
       <OrderFilterInputs />
