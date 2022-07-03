@@ -8,10 +8,14 @@ import '../CSS/Filters.css';
 export default function Filters() {
   return (
     <div className="filters">
-      <FilterSearch />
-      <NumericFilterInputs />
-      <OrderFilterInputs />
-      <FiltersList />
+      <div className="search-filter">
+        <FilterSearch />
+      </div>
+      <div className="numeric-filters">
+        <NumericFilterInputs />
+        <OrderFilterInputs />
+        <FiltersList />
+      </div>
     </div>
   );
 }

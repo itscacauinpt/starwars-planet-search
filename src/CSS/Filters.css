@@ -1,3 +1,27 @@
+/* stylelint-disable order/properties-alphabetical-order */
+
+/* stylelint-disable property-no-vendor-prefix */
 .filters {
-  color: white;
+  box-sizing: border-box;
+  color: rgb(77, 77, 0);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.search-filter {
+  margin: 4%;
+}
+
+.numeric-filters {
+  display: flex;
+  justify-content: space-between;
+  margin: 4%;
+}
+
+input, select, button {
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 10px;
+  color: rgb(119, 119, 0);
 }
