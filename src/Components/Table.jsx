@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-// import propTypes from 'prop-types';
 import Context from '../Context';
+import '../CSS/Table.css';
 
 function Table() {
   const { usePlanets } = useContext(Context);
@@ -11,40 +11,42 @@ function Table() {
 
   return (
     <div className="table-style">
-      <table cellPadding={ 0 } cellSpacing={ 0 }>
-        <thead>
-          <tr>
+      <div className="tbl-header">
+        <table cellPadding={ 0 } cellSpacing={ 0 } border={ 0 }>
+          <thead className="thead">
+            <tr className="tr">
+              {
+                usePlanets[0] && colums
+                  .map((heading, index) => <th key={ index }>{ heading }</th>)
+              }
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div className="tbl-content">
+        <table cellPadding={ 0 } cellSpacing={ 0 } border={ 0 }>
+          <tbody className="tbody">
             {
-              usePlanets[0] && colums
-                .map((heading, index) => <th key={ index }>{ heading }</th>)
+              usePlanets.map((row, indexRow) => (
+                <tr key={ indexRow } className="tr">
+                  {
+                    colums.map((column, indexColumn) => (
+                      <td
+                        data-testid={ indexColumn === 0 ? 'planet-name' : 'info' }
+                        key={ indexColumn }
+                      >
+                        {row[column]}
+                      </td>
+                    ))
+                  }
+                </tr>
+              ))
             }
-          </tr>
-        </thead>
-        <tbody>
-          {
-            usePlanets.map((row, indexRow) => (
-              <tr key={ indexRow }>
-                {
-                  colums.map((column, indexColumn) => (
-                    <td
-                      data-testid={ indexColumn === 0 ? 'planet-name' : 'info' }
-                      key={ indexColumn }
-                    >
-                      {row[column]}
-                    </td>
-                  ))
-                }
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
-
-// Table.propTypes = {
-//   usePlanetsBase: propTypes.arrayOf,
-// }.isRequired;
 
 export default Table;

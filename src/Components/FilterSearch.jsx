@@ -16,7 +16,7 @@ function FilterSearch() {
     <div>
       <input
         data-testid="name-filter"
-        placeholder="Search..."
+        placeholder="Search by name..."
         type="text"
         value={ name }
         onChange={ searchByName }

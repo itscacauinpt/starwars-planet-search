@@ -3,10 +3,10 @@ import Context from '../Context';
 
 function Filters() {
   const { useSelectedFilter: { filterByNumericValues },
-    deleteFilters } = useContext(Context);
+    deleteFilters, deleteAllFilters } = useContext(Context);
 
   return (
-    <div className="filter-color">
+    <div>
       {
         filterByNumericValues.map(({ column, comparison, value }, index) => (
           <div key={ index } data-testid="filter">
@@ -22,6 +22,13 @@ function Filters() {
           </div>
         ))
       }
+      <button
+        type="button"
+        onClick={ () => { deleteAllFilters(); } }
+        data-testid="button-remove-filters"
+      >
+        lixeirazinhaTudo
+      </button>
     </div>
   );
 }

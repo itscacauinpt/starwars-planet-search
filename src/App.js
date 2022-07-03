@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Provider from './Context/Provider';
-import './App.css';
+import './CSS/App.css';
 import Table from './Components/Table';
-import FilterSearch from './Components/FilterSearch';
-import NumericFilterInputs from './Components/NumericFilterInputs';
-import FiltersList from './Components/FiltersList';
-import OrderFilterInputs from './Components/OrderFilterInputs';
-import star from './projectIntro.gif';
-// gif dentro de src/
+import projectIntro from './Images/projectIntro.gif';
+import projectScroll from './Images/projectScroll.png';
+import Filters from './Components/Filters';
+import setScrollBarTime from './Services/sideFunctions';
 
 function App() {
+  useEffect(() => {
+    setScrollBarTime();
+  }, []);
+
+  const hiddenElement = { visibility: 'hidden' };
+
   return (
     <section className="App">
-      <img src={ star } alt="StarWarsIntro" />
+      <div className="App-header">
+        <img
+          id="starIntro"
+          src={ projectIntro }
+          alt="StarWarsIntro"
+        />
+        <img
+          id="scroll"
+          alt="scroll down"
+          src={ projectScroll }
+          style={ hiddenElement }
+        />
+      </div>
       <Provider>
-        <FilterSearch />
-        <NumericFilterInputs />
-        <OrderFilterInputs />
-        <FiltersList />
+        <Filters />
         <Table />
       </Provider>
     </section>
