@@ -1,22 +1,19 @@
-.filter-color {
-  color: white;
-}
+/* stylelint-disable at-rule-no-vendor-prefix */
 
+/* stylelint-disable property-no-vendor-prefix */
 .App {
-  margin: 4vh;
+  margin: 0 10%;
   text-align: center;
 }
 
-/* .App-header {
+.App-header {
   align-items: center;
-  background-color: #282c34;
-  color: white;
   display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
+  flex-flow: column;
   justify-content: center;
-  min-height: 100vh;
-} */
+  min-width: 50%;
+  width: 100%;
+}
 
 ::-webkit-scrollbar {
   background-color: rgba(238, 238, 238, 0.3);
@@ -25,4 +22,26 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: rgb(119, 119, 0);
+}
+
+#starIntro {
+  margin: 5%;
+  max-width: 100%;
+  min-width: 10%;
+}
+
+#scroll {
+  animation: 6s fadein;
+  margin-bottom: 5%;
+  max-width: 100%;
+  min-width: 5%;
+}
+
+@keyframes fadein {
+
+  0% { opacity: 0; }
+
+  66% { opacity: 0; }
+
+  100% { opacity: 1; }
 }

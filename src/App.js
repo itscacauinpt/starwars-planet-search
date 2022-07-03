@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Provider from './Context/Provider';
 import './App.css';
 import Table from './Components/Table';
-import star from './projectIntro.gif';
+import projectIntro from './Images/projectIntro.gif';
+import projectScroll from './Images/projectScroll.png';
 import Filters from './Components/Filters';
+import setScrollBarTime from './Services/sideFunctions';
 
 function App() {
+  useEffect(() => {
+    setScrollBarTime();
+  }, []);
+
+  const hiddenElement = { visibility: 'hidden' };
+
   return (
     <section className="App">
-      <img className="App-header" src={ star } alt="StarWarsIntro" />
+      <div className="App-header">
+        <img
+          id="starIntro"
+          src={ projectIntro }
+          alt="StarWarsIntro"
+        />
+        <img
+          id="scroll"
+          alt="scroll down"
+          src={ projectScroll }
+          style={ hiddenElement }
+        />
+      </div>
       <Provider>
         <Filters />
         <Table />
