@@ -11,7 +11,7 @@ const INITIAL_FITERS_STATE = {
 
 const INPUT_STATE = {
   column: 'population',
-  comparison: 'maior que',
+  comparison: 'more than',
   value: '0',
 };
 
@@ -93,9 +93,9 @@ function TableProvider({ children }) {
     let appliedFilters = [...results];
 
     const comparing = {
-      'maior que': (columnInput, comparisonInput) => columnInput > comparisonInput,
-      'menor que': (columnInput, comparisonInput) => columnInput < comparisonInput,
-      'igual a': (columnInput, comparisonInput) => columnInput === comparisonInput,
+      'more than': (columnInput, comparisonInput) => columnInput > comparisonInput,
+      'less than': (columnInput, comparisonInput) => columnInput < comparisonInput,
+      'equal to': (columnInput, comparisonInput) => columnInput === comparisonInput,
     };
 
     inputSelected.forEach(({ column, comparison, value }) => {

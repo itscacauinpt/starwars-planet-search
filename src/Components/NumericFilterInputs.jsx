@@ -6,7 +6,7 @@ function NumericFilterInputs() {
     setFilters, useColumnOptions } = useContext(Context);
   const { column, comparison, value } = useSelectedInput;
 
-  const operatorOptions = ['maior que', 'menor que', 'igual a'];
+  const operatorOptions = ['more than', 'less than', 'equal to'];
 
   function getSelected({ target }) {
     setSelectedInput({ ...useSelectedInput, [target.name]: target.value });

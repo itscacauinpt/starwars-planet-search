@@ -17,7 +17,7 @@ function Filters() {
               type="button"
               onClick={ () => { deleteFilters(column); } }
             >
-              lixeirazinha
+              remove
             </button>
           </div>
         ))
@@ -27,7 +27,7 @@ function Filters() {
         onClick={ () => { deleteAllFilters(); } }
         data-testid="button-remove-filters"
       >
-        lixeirazinhaTudo
+        remove all
       </button>
     </div>
   );
