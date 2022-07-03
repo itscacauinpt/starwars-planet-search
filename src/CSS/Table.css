@@ -9,9 +9,29 @@
   background-color: rgb(181, 185, 159);
   border-collapse: separate;
   padding: 0.5rem;
+  width: 100%;
 }
 
-.tr, th {
+.tr {
+  background-color: rgb(181, 185, 159);
+  white-space: nowrap;
+}
+
+th {
+  background-color: rgb(181, 185, 159);
+  padding: 1rem;
+
+  /* white-space: nowrap; */
+}
+
+td {
+  overflow-wrap: break-word;
+  padding: 0.5rem;
+  white-space: nowrap;
+  width: 20%;
+}
+
+/* .tr, th {
   background-color: rgb(181, 185, 159);
   padding: 1rem;
   white-space: nowrap;
@@ -22,7 +42,7 @@
   padding: 0.5rem;
   white-space: nowrap;
   width: 20%;
-}
+} */
 
 tbody, tr:nth-child( odd ) {
   background-color: white;

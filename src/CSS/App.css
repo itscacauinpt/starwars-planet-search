@@ -3,7 +3,7 @@
 /* stylelint-disable property-no-vendor-prefix */
 .App {
   color: rgb(77, 77, 0);
-  margin: 0 10% 10%;
+  margin: 0 10% 2%;
   text-align: center;
 }
 
@@ -45,4 +45,13 @@
   66% { opacity: 0; }
 
   100% { opacity: 1; }
+}
+
+a {
+  color: rgb(138, 138, 2);
+  text-decoration: none;
+}
+
+p {
+  margin-top: 20%;
 }

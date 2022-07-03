@@ -33,7 +33,17 @@ function App() {
         <Filters />
         <Table />
       </Provider>
-      <p>by Cacau - power by </p>
+      <p>
+        by
+        {' '}
+        <a target="_blank" href="https://github.com/itscacauinpt" rel="noreferrer">Cacau</a>
+        {' '}
+        -
+        {' '}
+        <a target="_blank" href="https://www.betrybe.com/" rel="noreferrer">Trybe</a>
+        {' '}
+        Project
+      </p>
     </section>
   );
 }
