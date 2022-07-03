@@ -33,6 +33,7 @@ function App() {
         <Filters />
         <Table />
       </Provider>
+      <p>by Cacau - power by </p>
     </section>
   );
 }

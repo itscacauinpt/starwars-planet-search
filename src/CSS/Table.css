@@ -1,21 +1,18 @@
 .table-style {
+  color: rgb(20, 39, 0);
   max-height: 300px;
   overflow-x: auto;
   width: 100%;
 }
 
-.thead {
-  background-color: rgb(175, 175, 175);
-}
-
 .tbl-header {
-  background-color: rgb(175, 175, 175);
+  background-color: rgb(181, 185, 159);
   border-collapse: separate;
   padding: 0.5rem;
 }
 
 .tr, th {
-  background-color: rgb(175, 175, 175);
+  background-color: rgb(181, 185, 159);
   padding: 1rem;
   white-space: nowrap;
 }
