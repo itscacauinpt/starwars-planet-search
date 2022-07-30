@@ -16,6 +16,8 @@ Projeto feito de forma individual durante o curso da [Trybe](https://www.betrybe
   * Utilizar o _React Hook useState_;
   * Utilizar o _React Hook useContext_;
   * Utilizar o _React Hook useEffect_;
+  
+  <hr/>
 
 <div align="center">Copyright :copyright: Trybe 2022 - StarWars Planet Search
 <br/>
