@@ -3,6 +3,7 @@
 
 > Acessar site https://starwars-planet-search.surge.sh/
 <img width="980px" src="https://github.com/itscacauinpt/starwars-planet-search/blob/main/starwars-preview.png">
+
 Projeto feito de forma individual durante o curso da [Trybe](https://www.betrybe.com/). Neste projeto foi utilizado Context API e Hooks para desenvolver uma lista com filtros de planetas do universo de Star Wars.
 
 ## 🔧 Funcionalidades
