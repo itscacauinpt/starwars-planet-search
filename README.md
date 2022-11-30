@@ -1,5 +1,5 @@
 # Star Wars Planet Search
-> Status do Projeto: concluído :heavy_check_mark: :warning:
+> Status do Projeto: concluído - Jul/2022 :heavy_check_mark: :warning:
 
 > Acessar site https://starwars-planet-search.surge.sh/
 <img width="980px" src="https://github.com/itscacauinpt/starwars-planet-search/blob/main/starwars-preview.png">
